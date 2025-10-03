@@ -1,0 +1,5 @@
+Django==5.1
+python-dotenv
+djangorestframework==3.15.0
+djangorestframework-simplejwt==6.2.0
+
