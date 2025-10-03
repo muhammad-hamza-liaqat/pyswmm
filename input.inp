@@ -1,0 +1,57 @@
+[TITLE]
+;; Project Title/Notes
+Example SWMM Project
+
+[OPTIONS]
+FLOW_UNITS            CFS
+INFILTRATION          HORTON
+FLOW_ROUTING          KINWAVE
+START_DATE            01/01/2000
+START_TIME            00:00:00
+REPORT_START_DATE     01/01/2000
+REPORT_START_TIME     00:00:00
+END_DATE              01/02/2000
+END_TIME              00:00:00
+SWEEP_START           01/01
+SWEEP_END             12/31
+DRY_DAYS              0
+REPORT_STEP           01:00:00
+WET_STEP              00:15:00
+DRY_STEP              01:00:00
+ROUTING_STEP          00:05:00
+
+[RAINGAGES]
+;;Name           Format    Interval SCF   Source
+RG1              INTENSITY 1:00     1.0   TIMESERIES TS1
+
+[TIMESERIES]
+;;Name           Date       Time       Value
+TS1               01/01/2000 00:00    0.1
+
+[SUBCATCHMENTS]
+;;Name           Raingage    Outlet      Area   %Imperv  Width   Slope   CurbLen
+S1                RG1        J1          10     50       500     0.01    0
+
+[SUBAREAS]
+;;Subcatchment   N-Imperv   N-Perv   S-Imperv   S-Perv   %Zero   RouteTo
+S1                0.01       0.1     0.05       0.05     25      OUTLET
+
+[INFILTRATION]
+;;Subcatchment   MaxRate   MinRate   Decay   DryTime   MaxInfil
+S1                3.0       0.5       2.0     7        0
+
+[JUNCTIONS]
+;;Name           Elevation  MaxDepth   InitDepth   SurDepth   Aponded
+J1                0         10         0          0          0
+
+[OUTFALLS]
+;;Name           Elevation  Type       Stage Data
+O1                0         FREE
+
+[CONDUITS]
+;;Name           FromNode   ToNode     Length   Roughness   InOffset   OutOffset   InitFlow   MaxFlow
+C1                J1        O1         1000     0.01        0          0          0          0
+
+[XSECTIONS]
+;;Link           Shape      Geom1     Geom2   Geom3   Geom4   Barrels
+C1                CIRCULAR  1.0       0       0       0       1
