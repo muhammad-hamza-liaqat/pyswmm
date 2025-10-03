@@ -4,8 +4,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from pyswmm import Simulation
+from rest_framework.permissions import IsAuthenticated
+
 
 class RunSWMMAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         input_dir = os.path.join(settings.MEDIA_ROOT, "input")
         output_dir = os.path.join(settings.MEDIA_ROOT, "output")
